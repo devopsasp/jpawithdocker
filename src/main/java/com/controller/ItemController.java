@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ import com.model.Item;
 import com.service.ItemService;
 
 @RestController
-
+@CrossOrigin(origins="*")
 public class ItemController {
 	
 @Autowired
@@ -64,6 +65,8 @@ public ResponseEntity<?> updateItem(@RequestBody Item item)
 @DeleteMapping("/item")
 public ResponseEntity<?> deleteItem(@RequestBody Item item)
 {
+  System.out.println(item);
+	
 	itemService.deleteItem(item);
 	return new ResponseEntity("Item deleted successfully",HttpStatus.OK);
 }
